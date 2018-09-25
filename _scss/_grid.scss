@@ -1,0 +1,25 @@
+$grid-columns: 12 !default;
+$grid-gutter : 18px !default;
+
+@mixin grid-row($gutter: $grid-gutter) {
+  @include flexbox;
+  @include flex-wrap(wrap);
+  
+  > * {
+  	@include flex-grow(1);
+  	@include flex-basis(percentage(1 / $grid-columns));
+    padding-left: $gutter / 2;
+    padding-right: $gutter / 2;
+  }
+}
+
+@mixin grid-col($width: false) {
+  @if $width {
+    @include flex-grow(0);
+    @include flex-basis(percentage($width));
+  }
+}
+
+@mixin grid-shift($width: 0) {
+  margin-left: percentage($width);
+}
